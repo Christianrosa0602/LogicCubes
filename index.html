@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>RubikShop</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header>
+        <h1>RubikShop</h1>
+        <a href="login.html" id="iniciosesion">Iniciar sesión</a>
+        <a href="carrito.html" id="carrito">Ver carrito</a>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Productos</a>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Cubos Rubik Destacados</h2>
+        <div class="catalogo">
+            <div class="producto">
+                <img src="img/cubo3x3.webp" alt="Cubo 3x3">
+                <h3>Cubo Rubik 3x3</h3>
+                <p>$150</p>
+                <button onclick="agregarAlCarrito('Cubo Rubik 3x3', 150)">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="img/cubo4x4.webp" alt="Cubo 4x4">
+                <h3>Cubo Rubik 4x4</h3>
+                <p>$200</p>
+                <button onclick="agregarAlCarrito('Cubo Rubik 4x4', 200)">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="img/cubo5x5.webp" alt="Cubo 5x5">
+                <h3>Cubo Rubik 5x5</h3>
+                <p>$250</p>
+                <button onclick="agregarAlCarrito('Cubo Rubik 5x5', 250)">Agregar al carrito</button>
+            </div>
+        </div> 
+    </main>
+
+    <footer>
+        <p>&copy; 2025 LogicCubes</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
