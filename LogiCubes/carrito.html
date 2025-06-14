@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi carrito</title>
+  <link rel="stylesheet" href="css/carrito.css">
+</head>
+<body>
+  <header>
+    <h1>Carrito de compras</h1>
+  </header>
+
+  <div id="lista-carrito"></div>
+  <h3 id="total">Total: $0</h3>
+  <button onclick="vaciarCarrito()">Vaciar carrito</button>
+  <a href="index.html">Regresar</a>
+
+  <script>
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const contenedor = document.getElementById("lista-carrito");
+    const totalElement = document.getElementById("total");
+
+    function mostrarCarrito() {
+      contenedor.innerHTML = "";
+      let total = 0;
+
+      if (carrito.length === 0) {
+        contenedor.innerHTML = "<p>No hay productos en el carrito.</p>";
+        totalElement.textContent = "Total: $0";
+        return;
+      }
+
+      carrito.forEach((producto, index) => {
+        const item = document.createElement("div");
+        item.className = "button"
+        item.innerHTML = `
+          <p>${producto.nombre} - $${producto.precio}</p>
+          <button onclick="eliminarProducto(${index})">Eliminar</button>
+        `;
+        contenedor.appendChild(item);
+        total += producto.precio;
+      });
+
+      totalElement.textContent = `Total: $${total}`;
+    }
+
+    function eliminarProducto(indice) {
+      carrito.splice(indice, 1);
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      mostrarCarrito();
+    }
+
+    function vaciarCarrito() {
+      localStorage.removeItem("carrito");
+      carrito = [];
+      mostrarCarrito();
+    }
+
+    mostrarCarrito(); // Llamar al cargar la página
+  </script>
+
+</body>
+</html>
