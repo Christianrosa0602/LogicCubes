@@ -9,15 +9,3 @@ function agregarAlCarrito(nombre, precio) {
 
     alert(`✅ ${nombre} agregado al carrito.`);
 }
-
-let total = 0;
-carrito.forEach(producto => {
-  const item = document.createElement("p");
-  item.textContent = `${producto.nombre} - $${producto.precio}`;
-  contenedor.appendChild(item);
-  total += producto.precio;
-});
-
-const totalElement = document.createElement("h3");
-totalElement.textContent = `Total: $${total}`;
-contenedor.appendChild(totalElement);
