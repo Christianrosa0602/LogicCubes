@@ -36,7 +36,19 @@
       const correo = document.getElementById("correo").value.trim();
       const clave = document.getElementById("clave").value;
 
-      // Puedes agregar campo de nombre más adelante si gustas
+      let rol;
+      if (correo === "admin@logiccubes.com") {
+        rol = "admin";
+      } else {
+        rol = "usuario";
+      }
+
+      const nuevoUsuario = {
+        correo,
+        clave,
+        rol
+      };
+
       const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
       const existe = usuarios.some(usuario => usuario.correo === correo);
@@ -45,7 +57,7 @@
         mensaje.textContent = "Este correo ya está registrado.";
         mensaje.style.color = "red";
       } else {
-        usuarios.push({ correo, clave });
+        usuarios.push(nuevoUsuario);
         localStorage.setItem("usuarios", JSON.stringify(usuarios));
         mensaje.textContent = "Registro exitoso.";
         mensaje.style.color = "green";

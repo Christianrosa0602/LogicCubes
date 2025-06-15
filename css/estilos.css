@@ -20,6 +20,7 @@ main {
     padding: 20px;
     text-align: center;
 }
+
 .catalogo {
     display: flex;
     justify-content: center;
@@ -37,6 +38,7 @@ main {
 .producto img {
     width: 100%;
 }
+
 button {
     background-color: #00c853;
     color: white;
@@ -46,6 +48,7 @@ button {
     cursor: pointer;
     margin-top: 10px;
 }
+
 footer {
     background-color: #222;
     color: white;
@@ -78,15 +81,6 @@ footer {
     margin-top: -3.5%;
 }
 
-/* .usuario-sesion {
-  display: flex;
-  gap: 10px;
-  margin-left: auto;
-  padding-right: 20px;
-  position: absolute;
-  left: 30%;
-} */
-
 #bienvenida {
   font-weight: bold;
   color: #00c853;
@@ -109,4 +103,12 @@ footer {
 
 #cerrarSesion:hover {
   background-color: #c9302c;
+}
+
+#catalogo-productos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
 }
