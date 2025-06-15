@@ -5,6 +5,7 @@ const btnIniciar = document.getElementById("iniciosesion");
 const btnCerrar = document.getElementById("cerrarSesion");
 const btnCarrito = document.getElementById("carrito");
 const adminPanel = document.getElementById("adminPanel");
+const historialpedidos = document.getElementById("historialPedidos")
 
 if (usuarioActivo) {
   bienvenida.textContent = `${usuarioActivo.correo}`;
@@ -14,8 +15,10 @@ if (usuarioActivo) {
 
   if (usuarioActivo.rol === "admin") {
     if (adminPanel) adminPanel.style.display = "inline";
+    if (historialpedidos) historialpedidos.style.display = "none";
   } else {
     if (adminPanel) adminPanel.style.display = "none";
+    if (historialpedidos) historialpedidos.style.display = "inline";
   }
 
   btnCerrar.addEventListener("click", (e) => {
@@ -28,4 +31,5 @@ if (usuarioActivo) {
   if (btnCerrar) btnCerrar.style.display = "none";
   if (btnCarrito) btnCarrito.style.display = "none";
   if (adminPanel) adminPanel.style.display = "none";
+  if (historialpedidos) historialpedidos.style.display = "none";
 }

@@ -40,13 +40,13 @@
       if (correo === "admin@logiccubes.com") {
         rol = "admin";
       } else {
-        rol = "usuario";
+        rol = "cliente";
       }
 
       const nuevoUsuario = {
         correo,
         clave,
-        rol
+        tipo_perfil
       };
 
       const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];

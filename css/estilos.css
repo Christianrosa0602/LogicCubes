@@ -5,6 +5,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
 }
+
 header {
     background-color: #222;
     color: white;
@@ -117,3 +118,4 @@ footer {
 section {
     margin-bottom: 40px;
 }
+

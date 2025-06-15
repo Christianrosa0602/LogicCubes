@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mis Pedidos</title>
+  <link rel="stylesheet" href="css/mis_pedidos.css">
+</head>
+<body>
+    <header>
+        <h1>Historial de Pedidos</h1>
+        <a href="index.html">Regresar</a>
+    </header>
+    <div id="pedidos-container"></div>
+    <script>
+        // Obtener usuario activo
+        const usuarioActivo = JSON.parse(localStorage.getItem("usuarioActivo"));
+
+        if (!usuarioActivo) {
+            alert("Debes iniciar sesión para ver tus pedidos.");
+            window.location.href = "login.html";
+        } else {
+        const pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+        const pedidosUsuario = pedidos.filter(p => p.id_usuario === usuarioActivo.correo);
+
+        const contenedor = document.getElementById("pedidos-container");
+
+        if (pedidosUsuario.length === 0) {
+            contenedor.innerHTML = '<p class="sin-pedidos">No tienes pedidos realizados.</p>';
+        } else {
+            pedidosUsuario.forEach(pedido => {
+                // Crear contenedor de pedido
+                const divPedido = document.createElement("div");
+                divPedido.className = "pedido";
+
+                // Fecha y estado
+                const header = document.createElement("div");
+                header.className = "pedido-header";
+                const fecha = new Date(pedido.fecha).toLocaleString();
+                header.innerHTML = `
+                    <span>Pedido ID: ${pedido.id_pedido}</span>
+                    <span>${fecha}</span>
+                    <span class="estado">Estado: ${pedido.estado}</span>
+                `;
+
+                divPedido.appendChild(header);
+
+                // Lista productos
+                const productosDiv = document.createElement("div");
+                productosDiv.className = "productos";
+
+                pedido.productos.forEach(prod => {
+                    const productoDiv = document.createElement("div");
+                    productoDiv.className = "producto";
+                    productoDiv.innerHTML = `
+                        <span>${prod.nombre} (x${prod.cantidad})</span>
+                        <span>$${prod.subtotal.toFixed(2)}</span>
+                    `;
+                    productosDiv.appendChild(productoDiv);
+                });
+
+                divPedido.appendChild(productosDiv);
+
+                // Total
+                const totalDiv = document.createElement("div");
+                totalDiv.style.textAlign = "right";
+                totalDiv.style.fontWeight = "bold";
+                totalDiv.textContent = `Total: $${pedido.total.toFixed(2)}`;
+
+                divPedido.appendChild(totalDiv);
+
+                contenedor.appendChild(divPedido);
+            });
+        }
+    }
+  </script>
+
+</body>
+</html>
