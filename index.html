@@ -9,8 +9,11 @@
 <body>
     <header>
         <h1>LogicCubes</h1>
+
+        <span id="bienvenida"></span>
         <a href="login.html" id="iniciosesion">Iniciar sesión</a>
         <a href="carrito.html" id="carrito">Ver carrito</a>
+        <a href="#" id="cerrarSesion">Cerrar sesion</a>
         <nav>
             <a href="#">Inicio</a>
             <a href="#">Wiki</a>
@@ -46,21 +49,7 @@
         <p>&copy; 2025 LogicCubes</p>
     </footer>
     
-    <script src="agregarCarrito.js"></script>
-
-    <script>
-        const usuarioActivo = JSON.parse(localStorage.getItem("usuarioActivo"));
-        const enlaceInicio = document.getElementById("iniciossesión");
-
-        if (usuarioActivo) {
-            enlaceInicio.textContent = "Cerrar sesión";
-            enlaceInicio.href = "#";
-            enlaceInicio.addEventListener("click", () => {
-                localStorage.removeItem("usuarioActivo");
-                alert("Sesión cerrada");
-                window.location.reload();
-            });
-        }
-    </script>
+    <script src="javaScript/agregarCarrito.js"></script>
+    <script src="javaScript/usuarioActivo.js"></script>
 </body>
 </html>
