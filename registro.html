@@ -1,22 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <title>Registro</title>
-    <link rel="stylesheet" href="css/login.css">
+  <meta charset="UTF-8">
+  <title>Registro</title>
+  <link rel="stylesheet" href="css/login.css">
+  </style>
 </head>
 <body>
-    <div>
-        <h2>Registro</h2>
-        <form action="login.php" method="POST">
-            <p>Correo electrónico</p>
-            <input type="email" name="correo" placeholder="correo electrónico">
-            <br>
-            <p>Contraseña</p>
-            <input type="password" name="contraseña" placeholder="contraseña">
-            <br>
-            <!-- <button type="submit">Entrar</button> -->
-             <a class="button" href="index.html">Entrar</a>
-        </form>
-    </div>
+  <div>
+    <h2>Registro</h2>
+    <form id="form-registro">
+      <p>Correo electrónico</p>
+      <input type="email" id="correo" placeholder="correo electrónico" required>
+      <br>
+      <p>Contraseña</p>
+      <input type="password" id="clave" placeholder="contraseña" required>
+      <br>
+      <button type="submit">Registrarse</button>
+    </form>
+
+    <br>
+    
+    <div class="mensaje" id="mensaje"></div>
+    <br>
+    <a class="button" href="index.html">Ir al inicio</a>
+  </div>
+
+  <script>
+    const form = document.getElementById("form-registro");
+    const mensaje = document.getElementById("mensaje");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const correo = document.getElementById("correo").value.trim();
+      const clave = document.getElementById("clave").value;
+
+      // Puedes agregar campo de nombre más adelante si gustas
+      const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+      const existe = usuarios.some(usuario => usuario.correo === correo);
+
+      if (existe) {
+        mensaje.textContent = "Este correo ya está registrado.";
+        mensaje.style.color = "red";
+      } else {
+        usuarios.push({ correo, clave });
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        mensaje.textContent = "Registro exitoso.";
+        mensaje.style.color = "green";
+        form.reset();
+      }
+    });
+  </script>
 </body>
 </html>

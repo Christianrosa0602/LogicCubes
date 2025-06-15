@@ -37,7 +37,7 @@ main {
 .producto img {
     width: 100%;
 }
-button {
+#button {
     background-color: #00c853;
     color: white;
     border: none;

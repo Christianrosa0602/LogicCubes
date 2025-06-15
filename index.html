@@ -45,6 +45,22 @@
     <footer>
         <p>&copy; 2025 LogicCubes</p>
     </footer>
-    <script src="script.js"></script>
+    
+    <script src="agregarCarrito.js"></script>
+
+    <script>
+        const usuarioActivo = JSON.parse(localStorage.getItem("usuarioActivo"));
+        const enlaceInicio = document.getElementById("iniciossesión");
+
+        if (usuarioActivo) {
+            enlaceInicio.textContent = "Cerrar sesión";
+            enlaceInicio.href = "#";
+            enlaceInicio.addEventListener("click", () => {
+                localStorage.removeItem("usuarioActivo");
+                alert("Sesión cerrada");
+                window.location.reload();
+            });
+        }
+    </script>
 </body>
 </html>

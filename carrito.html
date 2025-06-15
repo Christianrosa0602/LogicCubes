@@ -17,7 +17,21 @@
   <button id="finalizarCompra" onclick="finalizarCompra()">Finalizar Compra</button>
 
   <script>
-    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    // Obtener usuario activo de localStorage
+    const usuarioActivo = JSON.parse(localStorage.getItem("usuarioActivo"));
+
+    // Si no hay usuario activo, redirigir a login
+    if (!usuarioActivo) {
+      alert("Debes iniciar sesión para ver tu carrito.");
+      window.location.href = "login.html";
+    }
+
+    // Definir clave para carrito por usuario
+    const claveCarrito = `carrito_${usuarioActivo.correo}`;
+
+    // Obtener carrito específico del usuario activo
+    let carrito = JSON.parse(localStorage.getItem(claveCarrito)) || [];
+
     const contenedor = document.getElementById("lista-carrito");
     const totalElement = document.getElementById("total");
 
@@ -33,7 +47,7 @@
 
       carrito.forEach((producto, index) => {
         const item = document.createElement("div");
-        item.className = "button"
+        item.className = "button";
         item.innerHTML = `
           <p>${producto.nombre} - $${producto.precio}</p>
           <button onclick="eliminarProducto(${index})">Eliminar</button>
@@ -47,12 +61,12 @@
 
     function eliminarProducto(indice) {
       carrito.splice(indice, 1);
-      localStorage.setItem("carrito", JSON.stringify(carrito));
+      localStorage.setItem(claveCarrito, JSON.stringify(carrito));
       mostrarCarrito();
     }
 
     function vaciarCarrito() {
-      localStorage.removeItem("carrito");
+      localStorage.removeItem(claveCarrito);
       carrito = [];
       mostrarCarrito();
     }
@@ -60,15 +74,14 @@
     mostrarCarrito(); // Llamar al cargar la página
 
     function finalizarCompra() {
-      const confirmar = confirm("¿Estas seguro de finalizar la compra?");
+      const confirmar = confirm("¿Estás seguro de finalizar la compra?");
       if (confirmar) {
-        //limpiar carritoo
-        localStorage.removeItem("carrito");
-        alert("¡Gracias por tu compra!")
+        localStorage.removeItem(claveCarrito);
+        carrito = [];
+        mostrarCarrito();
+        alert("¡Gracias por tu compra!");
+        window.location.href = "index.html";
       }
-
-      //Redirigir a otra página 
-      window.location.href = "index.html";
     }
   </script>
 </body>

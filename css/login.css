@@ -17,7 +17,7 @@ body input {
     border: 1px solid #ccc;
 }
 
-.button {
+button {
     background-color: #00c853;
     color: white;
     border: none;
@@ -33,4 +33,19 @@ h2 {
 
 p {
     text-align: left;
+}
+
+.mensaje {
+  margin-top: 15px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0;
+  border: none;
+  width: auto;
+  background: none;
+  box-shadow: none;
+}
+
+.mensaje:empty {
+  display: none;
 }

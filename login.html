@@ -1,24 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <title>Inicio de sesión</title>
-    <link rel="stylesheet" href="css/login.css">
+  <meta charset="UTF-8">
+  <title>Inicio de sesión</title>
+  <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-    <div>
-        <h2>Iniciar sesión</h2>
-        <form action="login.php" method="POST">
-            <p>Correo electrónico</p>
-            <input type="email" name="correo" placeholder="correo electrónico">
-            <br>
-            <p>Contraseña</p>
-            <input type="password" name="contraseña" placeholder="contraseña">
-            <br>
-            <!-- <button type="submit">Entrar</button> -->
-             <a class="button" href="index.html">Entrar</a>
-        </form>
-        <br>
-        <span>¿No tienes cuenta? </span><a href="registro.html"> Regístrate aquí</a>
-    </div>
+  <div>
+    <h2>Iniciar sesión</h2>
+    <form id="form-login">
+      <p>Correo electrónico</p>
+      <input type="email" id="correo" placeholder="correo electrónico" required>
+      <br>
+      <p>Contraseña</p>
+      <input type="password" id="clave" placeholder="contraseña" required>
+      <br>
+      <button type="submit" class="button">Entrar</button>
+    </form>
+    <br>
+    <span>¿No tienes cuenta?</span>
+    <a href="registro.html">Regístrate aquí</a>
+  </div>
+
+  <script>
+    const form = document.getElementById("form-login");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const correo = document.getElementById("correo").value.trim();
+      const clave = document.getElementById("clave").value;
+
+      const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+      const usuario = usuarios.find(u => u.correo === correo && u.clave === clave);
+
+      if (usuario) {
+        localStorage.setItem("usuarioActivo", JSON.stringify(usuario));
+        alert("Inicio de sesión exitoso");
+        window.location.href = "index.html";
+      } else {
+        alert("Correo o contraseña incorrectos");
+      }
+    });
+  </script>
 </body>
 </html>
