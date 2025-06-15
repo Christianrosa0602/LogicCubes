@@ -34,11 +34,14 @@ function cargarProductos() {
       card.classList.add("producto");
 
       card.innerHTML = `
-        <img src="${prod.imagen}" alt="${prod.nombre}">
-        <h3>${prod.nombre}</h3>
-        <p>$${prod.precio}</p>
+        <a href="producto.html?id=${prod.id}">
+          <img src="${prod.imagen}" alt="${prod.nombre}">
+          <h3>${prod.nombre}</h3>
+          <p>$${prod.precio}</p>
+        </a>
         <button onclick="agregarAlCarrito('${prod.nombre}', ${prod.precio})">Agregar al carrito</button>
       `;
+
 
       fila.appendChild(card);
     });

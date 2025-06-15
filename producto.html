@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalle del Producto</title>
+  <link rel="stylesheet" href="css/producto.css">
+</head>
+<body>
+  <header>
+    <h1>Detalle del Producto</h1>
+    <a href="index.html">Volver al inicio</a>
+  </header>
+
+  <main>
+    <div id="detalle-producto"></div>
+
+    <section id="seccion-reseñas">
+      <h2>Reseñas</h2>
+      <div id="lista-reseñas"></div>
+
+      <form id="form-reseña">
+        <h3>Deja tu reseña</h3>
+        <textarea id="comentario" placeholder="Escribe tu opinión..." required></textarea><br>
+        <label>Calificación:
+          <select id="calificacion">
+            <option value="1">⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="5" selected>⭐⭐⭐⭐⭐</option>
+          </select>
+        </label><br>
+        <button type="submit">Enviar reseña</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="javaScript/producto.js"></script>
+</body>
+</html>
