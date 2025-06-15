@@ -8,20 +8,44 @@ function cargarProductos() {
     return;
   }
 
+  // Agrupar por categoría
+  const categorias = {};
   productos.forEach(prod => {
-    const card = document.createElement("div");
-    card.classList.add("producto");
-    card.innerHTML = `
+    if (!categorias[prod.categoria]) {
+      categorias[prod.categoria] = [];
+    }
+    categorias[prod.categoria].push(prod);
+  });
+
+  contenedor.innerHTML = ""; // Limpiar antes de renderizar
+
+  for (const categoria in categorias) {
+    const seccion = document.createElement("section");
+
+    const titulo = document.createElement("h3");
+    titulo.textContent = categoria;
+    seccion.appendChild(titulo);
+
+    const fila = document.createElement("div");
+    fila.classList.add("catalogo"); // Usamos el estilo ya hecho para mostrar en filas horizontales
+
+    categorias[categoria].forEach(prod => {
+      const card = document.createElement("div");
+      card.classList.add("producto");
+
+      card.innerHTML = `
         <img src="${prod.imagen}" alt="${prod.nombre}">
         <h3>${prod.nombre}</h3>
-        <p>Precio: $${prod.precio}</p>
-        <p>Stock: ${prod.stock}</p>
-        <p>Categoría: ${prod.categoria}</p>
-        <hr>
-        <button onclick="agregarAlCarrito('${prod.nombre}', ${prod.precio})">Agregar al Carrito</button>
-    `;
-    contenedor.appendChild(card);
-  });
+        <p>$${prod.precio}</p>
+        <button onclick="agregarAlCarrito('${prod.nombre}', ${prod.precio})">Agregar al carrito</button>
+      `;
+
+      fila.appendChild(card);
+    });
+
+    seccion.appendChild(fila);
+    contenedor.appendChild(seccion);
+  }
 }
 
 cargarProductos();
