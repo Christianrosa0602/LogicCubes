@@ -19,6 +19,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    justify-content: end;
 } 
 
 a {
@@ -29,6 +30,9 @@ a {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;  
+    position: absolute;
+    left: 0%;
+    margin-top: -3.5%;
 }
 
 .button {
@@ -39,4 +43,18 @@ a {
   padding: 10px;
   border-radius: 6px;
   margin-bottom: 10px;
+}
+
+#vaciar {
+  position: relative;
+  left: 43%;
+}
+
+#total {
+  text-align: center;
+}
+
+#finalizarCompra {
+  position: relative;
+  left: 43%;
 }
